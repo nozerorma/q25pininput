@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accessibility_description">Intercepts key events to type PIN on the lockscreen</string>
+</resources>
