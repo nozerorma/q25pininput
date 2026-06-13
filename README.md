@@ -17,7 +17,7 @@ It listens for hardware key presses via an accessibility service and taps the co
 
 **No root required** — it uses the accessibility service only (key-event filtering + clicking PIN-pad nodes).
 
-> Looking for more KEY2 tweaks (nav-button lock, audio EQ)? See the companion project **[key2-tweaks](https://github.com/nozerorma/key2-tweaks)**, which also includes this PIN feature.
+> Looking for KEY2 tweaks (pin input, nav-button lock, audio EQ)? See the companion project **[key2-tweaks](https://github.com/nozerorma/key2-tweaks)**, which also includes this PIN feature.
 
 ## Build
 
