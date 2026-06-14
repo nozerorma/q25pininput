@@ -3,6 +3,7 @@ package dev.pinkeys.lockscreenpin;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -25,15 +26,14 @@ public class MainActivity extends Activity {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setGravity(Gravity.CENTER);
-        layout.setBackgroundColor(Color.WHITE);
-        layout.setPadding(64, 64, 64, 64);
+        layout.setPadding(64, 64, 64, 64); // window background comes from the Material theme
 
         TextView title = new TextView(this);
         title.setText("Lockscreen PIN Entry");
         title.setTextSize(22);
         title.setTypeface(null, Typeface.BOLD);
         title.setGravity(Gravity.CENTER);
-        title.setTextColor(Color.BLACK);
+        title.setTextColor(themeAttrColor(android.R.attr.textColorPrimary, Color.BLACK));
 
         statusView = new TextView(this);
         statusView.setTextSize(15);
@@ -60,11 +60,17 @@ public class MainActivity extends Activity {
         boolean enabled = isServiceEnabled();
         if (enabled) {
             statusView.setText("Service is ENABLED");
-            statusView.setTextColor(Color.parseColor("#2E7D32"));
+            statusView.setTextColor(Color.parseColor("#43A047"));
         } else {
             statusView.setText("Service is disabled.\nTap the button below and enable\n\"Lockscreen PIN Entry\".");
-            statusView.setTextColor(Color.parseColor("#C62828"));
+            statusView.setTextColor(Color.parseColor("#E53935"));
         }
+    }
+
+    /** Resolve a theme color attribute (e.g. textColorPrimary) to an int. */
+    private int themeAttrColor(int attr, int fallback) {
+        TypedArray a = getTheme().obtainStyledAttributes(new int[]{attr});
+        try { return a.getColor(0, fallback); } finally { a.recycle(); }
     }
 
     private boolean isServiceEnabled() {
